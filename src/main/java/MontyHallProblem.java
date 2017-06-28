@@ -1,28 +1,34 @@
 public class MontyHallProblem {
 
     public static void main(String[] args) {
-        int winsNoSwitch = 0;
-        int winsWithSwitch = 0;
-        for (int rounds = 0; rounds < 10000; rounds += 1) {
+        Player nonSwitchPlayer = new Player();
+        Player switchingPlayer = new Player();
+        int numberOfRounds = 10000;
+
+        for (int rounds = 0; rounds < numberOfRounds; rounds += 1) {
             ThreeDoors threeDoors = new ThreeDoors();
-            Player player = new Player();
-            int selection = player.selectDoor();
+            int selection = nonSwitchPlayer.selectDoor();
 
             if (threeDoors.getDoor(selection).isTheRightDoor()) {
-                winsNoSwitch += 1;
+                nonSwitchPlayer.win();
             }
+        }
 
-            int incorrectDoor = threeDoors.getIncorrectDoorIndex(selection);
-            int newSelection = player.selectNewDoor(incorrectDoor, selection);
+        for (int rounds = 0; rounds < numberOfRounds; rounds += 1) {
+            ThreeDoors threeDoors = new ThreeDoors();
+            int selection = switchingPlayer.selectDoor();
+
+            int incorrectDoor = threeDoors.revealIncorrectDoor(selection);
+            int newSelection = switchingPlayer.selectNewDoor(incorrectDoor, selection);
 
             if (threeDoors.getDoor(newSelection).isTheRightDoor()) {
-                winsWithSwitch += 1;
+                switchingPlayer.win();
             }
 
         }
 
-        System.out.println(String.format("Without switch wins: %s times of 10000 attempts", winsNoSwitch));
-        System.out.println(String.format("With switch wins: %s times of 10000 attempts", winsWithSwitch));
+        System.out.println(String.format("Without switch wins: %s times of %s attempts", nonSwitchPlayer.getWins(), numberOfRounds));
+        System.out.println(String.format("With switch wins: %s times of %s attempts", switchingPlayer.getWins(), numberOfRounds));
 
     }
 }

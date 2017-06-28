@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Player {
     private Random random;
-    private int selection;
+    private int wins;
 
     public Player() {
         this.random = new Random();
@@ -14,5 +14,13 @@ public class Player {
 
     public int selectNewDoor(int incorrectDoorIndex, int oldSelection) {
         return 3 - incorrectDoorIndex - oldSelection;
+    }
+
+    public void win() {
+        wins += 1;
+    }
+
+    public int getWins() {
+        return wins;
     }
 }

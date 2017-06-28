@@ -17,7 +17,7 @@ class ThreeDoorsTest {
     @Test
     void getIncorrectDoorIndexDoesNotReurnThePlayerSelectedDoorIndex() {
         int playerSelectedDoorIndex = 1;
-        int incorrectDoorIndex = threeDoors.getIncorrectDoorIndex(playerSelectedDoorIndex);
+        int incorrectDoorIndex = threeDoors.revealIncorrectDoor(playerSelectedDoorIndex);
         assertThat(incorrectDoorIndex, not(equalTo(playerSelectedDoorIndex)));
 
     }
@@ -25,7 +25,7 @@ class ThreeDoorsTest {
     @Test
     void getIncorrectDoorIndexDoesNotReurnTheIndexOfTheCorrectDoor() {
         int playerSelectedDoorIndex = 2;
-        int incorrectDoorIndex = threeDoors.getIncorrectDoorIndex(playerSelectedDoorIndex);
+        int incorrectDoorIndex = threeDoors.revealIncorrectDoor(playerSelectedDoorIndex);
         Door expectedIncorrectDoor = threeDoors.getDoor(incorrectDoorIndex);
         assertThat(expectedIncorrectDoor.isTheRightDoor(), not(equalTo(true)));
     }

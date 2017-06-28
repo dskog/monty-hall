@@ -17,7 +17,7 @@ public class ThreeDoors {
         }
     }
 
-    public int getIncorrectDoorIndex(int selectedDoorIndex) {
+    public int revealIncorrectDoor(int selectedDoorIndex) {
         int incorrectDoorIndex;
         do {
             incorrectDoorIndex = random.nextInt(3);

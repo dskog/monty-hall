@@ -4,7 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 class PlayerTest {
-
     private Player player;
 
     @BeforeEach
@@ -21,6 +20,17 @@ class PlayerTest {
     @Test
     void selectedDoorHasIndexOfZeroUpToTwo() {
         assertThat(player.selectDoor(), allOf(greaterThanOrEqualTo(0), lessThan(3)));
+    }
+
+    @Test
+    void aPlayerWithNoWinsHasZeroWins() {
+        assertThat(player.getWins(), comparesEqualTo(0));
+    }
+
+    @Test
+    void aWinIncrementsThePlayerWinsByOne() {
+        player.win();
+        assertThat(player.getWins(), comparesEqualTo(1));
     }
 
 
