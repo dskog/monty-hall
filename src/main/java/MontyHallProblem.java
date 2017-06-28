@@ -4,18 +4,21 @@ public class MontyHallProblem {
         int winsNoSwitch = 0;
         int winsWithSwitch = 0;
         for (int rounds = 0; rounds < 10000; rounds += 1) {
-            ThreeDoors threeDoors = new ThreeDoors();
+            GameHost gameHost = new GameHost();
             Player player = new Player();
-            int selection = player.selectDoor();
 
-            if (threeDoors.getDoor(selection).isTheRightDoor()) {
+            int selection = player.selectDoor();
+            gameHost.setPlayerSelectedDoor(selection);
+
+            if (gameHost.isSelectedDoorCorrect()) {
                 winsNoSwitch += 1;
             }
 
-            int incorrectDoor = threeDoors.getIncorrectDoorIndex(selection);
+            int incorrectDoor = gameHost.revealIncorrectDoor();
             int newSelection = player.selectNewDoor(incorrectDoor, selection);
+            gameHost.setPlayerSelectedDoor(newSelection);
 
-            if (threeDoors.getDoor(newSelection).isTheRightDoor()) {
+            if (gameHost.isSelectedDoorCorrect()) {
                 winsWithSwitch += 1;
             }
 

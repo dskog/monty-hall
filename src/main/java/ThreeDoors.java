@@ -17,13 +17,8 @@ public class ThreeDoors {
         }
     }
 
-    public int getIncorrectDoorIndex(int selectedDoorIndex) {
-        int incorrectDoorIndex;
-        do {
-            incorrectDoorIndex = random.nextInt(3);
-        } while (selectedDoorIndex == incorrectDoorIndex || correctDoorIndex == incorrectDoorIndex);
-
-        return incorrectDoorIndex;
+    public int getCorrectDoorIndex() {
+        return correctDoorIndex;
     }
 
     public Door getDoor(int doorIndex) {

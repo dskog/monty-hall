@@ -2,7 +2,6 @@ import java.util.Random;
 
 public class Player {
     private Random random;
-    private int selection;
 
     public Player() {
         this.random = new Random();
@@ -12,7 +11,7 @@ public class Player {
         return random.nextInt(3);
     }
 
-    public int selectNewDoor(int incorrectDoorIndex, int oldSelection) {
-        return 3 - incorrectDoorIndex - oldSelection;
+    public int selectNewDoor(int incorrectDoorIndex, int previousSelectedDoor) {
+        return 3 - incorrectDoorIndex - previousSelectedDoor;
     }
 }

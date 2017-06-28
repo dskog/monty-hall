@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -15,19 +17,16 @@ class ThreeDoorsTest {
     }
 
     @Test
-    void getIncorrectDoorIndexDoesNotReurnThePlayerSelectedDoorIndex() {
-        int playerSelectedDoorIndex = 1;
-        int incorrectDoorIndex = threeDoors.getIncorrectDoorIndex(playerSelectedDoorIndex);
-        assertThat(incorrectDoorIndex, not(equalTo(playerSelectedDoorIndex)));
-
+    void getCorrectDoorIndexReturnsTheCorrectDoor() {
+        int expectedCorrectDoorIndex = threeDoors.getCorrectDoorIndex();
+        Door expectedCorrectDoor = threeDoors.getDoor(expectedCorrectDoorIndex);
+        assertThat(expectedCorrectDoor.isTheRightDoor(), equalTo(true));
     }
 
     @Test
-    void getIncorrectDoorIndexDoesNotReurnTheIndexOfTheCorrectDoor() {
-        int playerSelectedDoorIndex = 2;
-        int incorrectDoorIndex = threeDoors.getIncorrectDoorIndex(playerSelectedDoorIndex);
-        Door expectedIncorrectDoor = threeDoors.getDoor(incorrectDoorIndex);
-        assertThat(expectedIncorrectDoor.isTheRightDoor(), not(equalTo(true)));
+    void getDoor() {
+        assertThat(threeDoors.getDoor(0), instanceOf(Door.class));
     }
+
 
 }
